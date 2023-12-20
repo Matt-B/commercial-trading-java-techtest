@@ -17,6 +17,10 @@ where example2.txt is the text file that we want to search for anagrams
 
 ## Notes
 
+### Description
+
+This solution uses the `AnagramFileParser` class to parse the file line by line into a `List<String>` until it encounters a word of a different length, at which point it passes the group of words of  the same length to the `AnagramAggregator` class, which uses the Java streams API to group all the words by their constituent characters, sorted alphabetically. This gives us a `Map` where the values are the grouped anagrams. This is then returned to be printed to `stdout`, again using the streams API to join them with a comma delimiter. 
+
 ### Assumptions
 
 As well as the assumptions listed in the PDF:
