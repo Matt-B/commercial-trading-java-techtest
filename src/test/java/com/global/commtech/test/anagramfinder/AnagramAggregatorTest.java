@@ -1,21 +1,31 @@
 package com.global.commtech.test.anagramfinder;
 
 import static org.assertj.core.api.Assertions.assertThat;
+
+import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
+import java.io.PrintStream;
 import java.util.Arrays;
 import java.util.List;
 
 public class AnagramAggregatorTest {
 
+    AnagramAggregator anagramAggregator;
+
+    @BeforeEach
+    public void setup() {
+        anagramAggregator = new AnagramAggregator();
+    }
+
     @Test
     void shouldReturnZeroGroupsWhenPassedEmptyList() {
-        assertThat(AnagramAggregator.aggregateAnagrams(List.of()).size()).isEqualTo(0);
+        assertThat(anagramAggregator.aggregateAnagrams(List.of()).size()).isEqualTo(0);
     }
 
     @Test
     void shouldAggregateSingleLetterAnagramsIntoASingleGroup() {
-        assertThat(AnagramAggregator.aggregateAnagrams(Arrays.asList(
+        assertThat(anagramAggregator.aggregateAnagrams(Arrays.asList(
                 "a",
                 "a"
         )).size()).isEqualTo(1);
@@ -23,7 +33,7 @@ public class AnagramAggregatorTest {
 
     @Test
     void shouldAggregateAnagramsIntoASingleGroup() {
-        assertThat(AnagramAggregator.aggregateAnagrams(Arrays.asList(
+        assertThat(anagramAggregator.aggregateAnagrams(Arrays.asList(
                 "aba",
                 "baa"
         )).size()).isEqualTo(1);
@@ -31,7 +41,7 @@ public class AnagramAggregatorTest {
 
     @Test
     void shouldAggregateAnagramsIntoTwoGroups() {
-        assertThat(AnagramAggregator.aggregateAnagrams(Arrays.asList(
+        assertThat(anagramAggregator.aggregateAnagrams(Arrays.asList(
                 "baab",
                 "baba",
                 "aaab",
@@ -41,7 +51,7 @@ public class AnagramAggregatorTest {
 
     @Test
     void shouldAggregateAnagramsOfDifferentLengths() {
-        assertThat(AnagramAggregator.aggregateAnagrams(Arrays.asList(
+        assertThat(anagramAggregator.aggregateAnagrams(Arrays.asList(
                 "a",
                 "a",
                 "racecar",
